@@ -50,9 +50,9 @@
 <script>
   // Silakan ubah judul dan isi pesan di bagian ini.
   const messages = [
-    { icon: "🖕", title: "PESAN 1", text: "KERJA BOSS " },
-    { icon: "🖕", title: "PESAN 2", text: "KEAJAIBAN GAK BAKALAN DATANG SECARA SENDIRI,KEHIDUPAN KERAS BOSS,MAU JADI APA KAU KALOK KAU TAUNYA CUMAN IRI DAN DENGKI DENGAN ORANG LAIN,GUA MAU TANYA KAU SEPERTI ITU ADA MANFAATKAN GAK SEPERTI ITU,TAUNYA CUMAN IRI DAN DENGKI SAMA ORANG LAIN DAN PERCUMA KAU GANTENG BADAN MANTAP TAPI PENGANGGURAN,APA GAK TERIMA FAKTA? MASIH MAU BILANG SISAH CARI KERJA,AYO LAH BUNG KERJA WFO ITU BANYAK,HANYA KAU MAU ATAU GAK" },
-    { icon: "🖕", title: "PESAN 3", text: "SAMPAI JUMPA DI GARIS AKHIR KAU PECUNDANG 🖕" }
+    { icon: "🖕", title: "PESAN 1", text: "KERJA BOSS " },
+    { icon: "🖕", title: "PESAN 2", text: "KEAJAIBAN GAK BAKALAN DATANG SECARA SENDIRI,KEHIDUPAN KERAS BOSS,MAU JADI APA KAU KALOK KAU TAUNYA CUMAN IRI DAN DENGKI DENGAN ORANG LAIN,GUA MAU TANYA KAU SEPERTI ITU ADA MANFAATKAN SEPERTI ITU? TAUNYA CUMAN IRI DAN DENGKI SAMA ORANG LAIN DAN PERCUMA KAU GANTENG BADAN MANTAP TAPI PENGANGGURAN,APA GAK TERIMA FAKTA? MASIH MAU BILANG SUSAH CARI KERJA,AYO LAH BUNG KERJA WORK FROM OFFICE ITU BANYAK HANYA KAU MAU ATAU GAKNYA" },
+    { icon: "🖕", title: "PESAN 3", text: "SAMPAI JUMPA DI GARIS AKHIR KAU PECUNDANG🖕 " }
   ];
   let index = 0;
   const content = document.getElementById("content");
@@ -78,10 +78,10 @@
   function showEnd() {
     content.className = "fade end";
     content.innerHTML = `
-      <div class="icon">🖕</div>
+      <div class="icon">🖕</div>
       <h1>Mantap,Kau Sudah Baca</h1>
-            <p class="message"><br>SATU PESAN DARI GUA UNTUK KAU,JANGAN SOK PAHAM DENGAN HIDUP URUSAN ORANG LAIN</p>
-      <p class="message"><br>🖕FUCK YOU 🖕 </p>
+            <p class="message"><br>SATU PESAN DARI GUA UNTUK KAU,JANGAN SOK PAHAM DENGAN URUSAN HIDUP ORANG LAIN</p>
+      <p class="message"><br>🖕FUCK YOU🖕</p>
       <p class="hint"></p>
       <button class="secondary" id="restart" type="button">BACA LAGI</button>`;
     document.getElementById("restart").addEventListener("click", () => { index = 0; render(); });
