@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f3f4f6">
+<title>Penyampaian Pesan</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 20px; background: #f1f3f5; color: #252a31;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .container { width: 100%; max-width: 440px; }
+  .label { text-align: center; font-size: 12px; color: #7a818b; letter-spacing: 1.5px; margin-bottom: 14px; }
+  .card {
+    background: #fff; border: 1px solid #e2e5e9; border-radius: 14px;
+    padding: 28px 24px 22px; box-shadow: 0 8px 24px rgba(25,35,45,.07);
+  }
+  .top { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #7a818b; }
+  .badge { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #6c9c7a; }
+  .icon { width: 48px; height: 48px; border-radius: 12px; background: #f0f4f8; display: grid; place-items: center; font-size: 23px; margin: 28px auto 18px; }
+  h1 { font-size: 25px; line-height: 1.25; text-align: center; margin: 0; font-weight: 700; }
+  .message { text-align: center; color: #5e6671; font-size: 15px; line-height: 1.7; min-height: 76px; margin: 14px 0 24px; white-space: pre-line; }
+  .progress-info { display: flex; justify-content: space-between; color: #8a919a; font-size: 11px; margin-bottom: 8px; }
+  .track { height: 4px; background: #eceff2; border-radius: 10px; overflow: hidden; }
+  .bar { height: 100%; background: #7189a6; border-radius: 10px; transition: width .3s ease; }
+  button { display: block; width: 100%; margin-top: 24px; border: 0; border-radius: 9px; padding: 14px 18px; background: #526b87; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .5px; cursor: pointer; }
+  button:hover { background: #435b75; }
+  .hint { text-align: center; color: #9aa0a8; font-size: 11px; margin: 14px 0 0; }
+  .fade { animation: appear .25s ease-out; }
+  @keyframes appear { from { opacity: .3; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .end { text-align: center; }
+  .end .message { min-height: auto; }
+  .secondary { background: #eef1f4; color: #45515e; border: 1px solid #e0e4e8; }
+  .secondary:hover { background: #e4e8ec; }
+  @media (max-width: 380px) { .card { padding: 23px 18px 18px; } h1 { font-size: 22px; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="container">
+    <div class="label">C:\xampp\htdocs\website\developer</div>
+  <section class="card">
+    <div id="content" class="fade"></div>
+  </section>
+</main>
+<script>
+  // Silakan ubah judul dan isi pesan di bagian ini.
+  const messages = [
+    { icon: "🖕", title: "PESAN 1", text: "KERJA BOSS " },
+    { icon: "🖕", title: "PESAN 2", text: "KEAJAIBAN GAK BAKALAN DATANG SECARA SENDIRI,KEHIDUPAN KERAS BOSS,MAU JADI APA KAU KALOK KAU TAUNYA CUMAN IRI DAN DENGKI DENGAN ORANG LAIN,GUA MAU TANYA KAU SEPERTI ITU ADA MANFAATKAN GAK SEPERTI ITU,TAUNYA CUMAN IRI DAN DENGKI SAMA ORANG LAIN DAN PERCUMA KAU GANTENG BADAN MANTAP TAPI PENGANGGURAN,APA GAK TERIMA FAKTA? MASIH MAU BILANG SISAH CARI KERJA,AYO LAH BUNG KERJA WFO ITU BANYAK,HANYA KAU MAU ATAU GAK" },
+    { icon: "🖕", title: "PESAN 3", text: "SAMPAI JUMPA DI GARIS AKHIR KAU PECUNDANG 🖕" }
+  ];
+  let index = 0;
+  const content = document.getElementById("content");
+
+  function render() {
+    const m = messages[index];
+    content.className = "fade";
+    content.innerHTML = `
+      <div class="top"><span class="badge"><span class="dot"></span> Pesan</span><span>${index + 1} dari ${messages.length}</span></div>
+      <div class="icon">${m.icon}</div>
+      <h1>${m.title}</h1>
+      <p class="message">${m.text.replace(/\\n/g, "<br>")}</p>
+      <div class="progress-info"><span>Kau Sedang Membaca...</span><span>${Math.round((index + 1) / messages.length * 100)}%</span></div>
+      <div class="track"><div class="bar" style="width:${(index + 1) / messages.length * 100}%"></div></div>
+      <button id="next" type="button">${index === messages.length - 1 ? "SELESAI" : "SELANJUTNYA"}</button>
+      <p class="hint">Kau Tekan Tombol Selanjutnya Untuk Lanjut Membaca</p>`;
+    document.getElementById("next").addEventListener("click", advance);
+  }
+  function advance() {
+    if (index < messages.length - 1) { index++; render(); }
+    else { showEnd(); }
+  }
+  function showEnd() {
+    content.className = "fade end";
+    content.innerHTML = `
+      <div class="icon">🖕</div>
+      <h1>Mantap,Kau Sudah Baca</h1>
+            <p class="message"><br>SATU PESAN DARI GUA UNTUK KAU,JANGAN SOK PAHAM DENGAN HIDUP URUSAN ORANG LAIN</p>
+      <p class="message"><br>🖕FUCK YOU 🖕 </p>
+      <p class="hint"></p>
+      <button class="secondary" id="restart" type="button">BACA LAGI</button>`;
+    document.getElementById("restart").addEventListener("click", () => { index = 0; render(); });
+  }
+  render();
+</script>
+</body>
+</html>
